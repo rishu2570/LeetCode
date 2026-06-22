@@ -1,0 +1,33 @@
+class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+      
+        count = {}
+
+        # Count frequency
+        for ch in s:
+            if ch in count:
+                count[ch] = count[ch] + 1
+            else:
+                count[ch] = 1
+
+        stack = []
+        visited = {}
+
+        for ch in s:
+            count[ch] = count[ch] - 1
+
+            if ch in visited:
+                continue
+
+            while len(stack) > 0 and stack[-1] > ch and count[stack[-1]] > 0:
+                removed = stack.pop()
+                del visited[removed]
+
+            stack.append(ch)
+            visited[ch] = 1
+
+        result = ""
+        for ch in stack:
+            result = result + ch
+
+        return result  
