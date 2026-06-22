@@ -1,0 +1,33 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+    
+        n = len(s)
+
+        stack = [""] * n
+        top = -1
+
+        for ch in s:
+
+            if ch == '(' or ch == '[' or ch == '{':
+                top += 1
+                stack[top] = ch
+
+            else:
+                if top == -1:
+                    return False
+
+                open_bracket = stack[top]
+                top -= 1
+
+                if ch == ')' and open_bracket != '(':
+                    return False
+
+                if ch == ']' and open_bracket != '[':
+                    return False
+
+                if ch == '}' and open_bracket != '{':
+                    return False
+
+        return top == -1
+
+    
