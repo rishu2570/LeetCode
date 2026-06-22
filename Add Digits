@@ -1,0 +1,19 @@
+class Solution:
+    def addDigits(self, num: int) -> int:
+  
+        
+        # If already a single digit
+        if num < 10:
+            return num
+
+        # Find sum of digits recursively
+        digit_sum = self.sumDigits(num)
+
+        # Recursively reduce again
+        return self.addDigits(digit_sum)
+
+    def sumDigits(self, num):
+        if num == 0:
+            return 0
+
+        return (num % 10) + self.sumDigits(num // 10)
