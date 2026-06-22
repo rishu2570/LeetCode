@@ -1,0 +1,16 @@
+class RecentCounter:
+
+    def __init__(self):
+        self.q = [0] * 10001
+        self.front = 0
+        self.rear = 0
+
+    def ping(self, t):
+        self.q[self.rear] = t
+        self.rear += 1
+
+        while self.q[self.front] < t - 3000:
+            self.front += 1
+
+        count = self.rear - self.front
+        return count
