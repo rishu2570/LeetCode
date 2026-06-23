@@ -1,0 +1,17 @@
+class Solution:
+    def missingNumber(self, nums):
+        n = len(nums)
+
+        total = 0
+        i = 0
+        while i <= n:
+            total += i
+            i += 1
+
+        arr_sum = 0
+        i = 0
+        while i < n:
+            arr_sum += nums[i]
+            i += 1
+
+        return total - arr_sum
