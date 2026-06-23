@@ -1,0 +1,33 @@
+class Solution:
+    def maxProduct(self, nums):
+        max_prod = nums[0]
+        min_prod = nums[0]
+        result = nums[0]
+
+        i = 1
+        while i < len(nums):
+            curr = nums[i]
+
+            if curr < 0:
+                temp = max_prod
+                max_prod = min_prod
+                min_prod = temp
+
+            # Find maximum product ending at current position
+            if curr > curr * max_prod:
+                max_prod = curr
+            else:
+                max_prod = curr * max_prod
+
+            # Find minimum product ending at current position
+            if curr < curr * min_prod:
+                min_prod = curr
+            else:
+                min_prod = curr * min_prod
+
+            if max_prod > result:
+                result = max_prod
+
+            i += 1
+
+        return result
